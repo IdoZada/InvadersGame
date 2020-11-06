@@ -6,6 +6,7 @@ from raspigame import *
 from interstitial import *
 from menu import MainMenuState
 from invadersgame import PlayGameState
+from option import OptionState
 
 """
 ----------------------------------------------------------------------------------------------------
@@ -18,10 +19,17 @@ SCREEN_W = 800
 SCREEN_H = 600
 
 invadersGame = RaspberryPiGame("Invaders", SCREEN_W, SCREEN_H)
-mainMenuState = MainMenuState( invadersGame )
-gameOverState = InterstitialState( invadersGame, 'G A M E  O V E R !', 5000, mainMenuState )
-playGameState = PlayGameState( invadersGame, gameOverState )
-getReadyState = InterstitialState( invadersGame, 'Get Ready!', 2000, playGameState )
-mainMenuState.setPlayState( getReadyState )
+mainMenuState = MainMenuState(invadersGame)
+gameOverState = InterstitialState(invadersGame, 'G A M E  O V E R !', 5000, mainMenuState)
+playGameState = PlayGameState(invadersGame, gameOverState)
+getReadyState = InterstitialState(invadersGame, 'Get Ready!', 2000, playGameState)
+mainMenuState.setPlayState(getReadyState)
+invadersGame.run(mainMenuState)
 
-invadersGame.run( mainMenuState )
+# TODO: #### Option ######
+optionState = OptionState(invadersGame)
+getOptionState = InterstitialState(invadersGame, 'Get Option!', 2000, optionState)
+mainMenuState.setOptionState(getOptionState)
+# optionState.setMainMenuState(mainMenuState)
+
+

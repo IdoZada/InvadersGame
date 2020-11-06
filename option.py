@@ -2,18 +2,19 @@ from raspigame import *
 from pygamefont import *
 
 
+#TODO: Connect to the mainmenu, buttons
 class OptionState(GameState):
 
     def __init__(self, game):
         super(OptionState, self).__init__(game)
-        self.playGameState = None
+        self.mainMenuState = None
         self.font = FontType("david", 50, (255, 255, 255))
         self.index = 0
         self.inputTick = 0
         self.OptionItems = ['Default', 'Ok']
 
-    def setPlayState(self, state):
-        self.playGameState = state
+    def setMainMenuState(self, state):
+        self.mainMenuState = state
 
     def update(self, gameTime):
 
@@ -23,10 +24,10 @@ class OptionState(GameState):
             if (keys[K_UP]):
                 self.index -= 1
                 if (self.index < 0):
-                    self.index = len(self.menuItems) - 1
+                    self.index = len(self.OptionItems) - 1
             elif (keys[K_DOWN]):
                 self.index += 1
-                if (self.index == len(self.menuItems)):
+                if (self.index == len(self.OptionItems)):
                     self.index = 0
         elif (self.inputTick > 0):
             self.inputTick -= gameTime
@@ -36,7 +37,8 @@ class OptionState(GameState):
 
         if (keys[K_RETURN]):
             if (self.index == 1):
-                self.game.changeState(None)  # exit the game
+                print(self.mainMenuState)
+                self.game.changeState(self.mainMenuState)  # exit the game
             elif (self.index == 0):
                 print(self.playGameState)
                 self.game.changeState(self.playGameState)
@@ -46,8 +48,8 @@ class OptionState(GameState):
         self.font.centre(surface, "Invaders! From Space!", 48)
 
         count = 0
-        y = surface.get_rect().height - len(self.menuItems) * 110
-        for item in self.menuItems:
+        y = surface.get_rect().height - len(self.OptionItems) * 110
+        for item in self.OptionItems:
             itemText = "  "
 
             if (count == self.index):

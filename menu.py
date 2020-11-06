@@ -22,6 +22,7 @@ class MainMenuState(GameState):
 	def setOptionState(self,state):
 		self.optionGameState = state
 
+
 	def update(self, gameTime):
 		
 		keys = pygame.key.get_pressed()
@@ -48,7 +49,7 @@ class MainMenuState(GameState):
 			elif self.index == 1:
 				self.game.changeState(self.optionGameState)
 			elif self.index == 0:
-				print (self.playGameState)
+				# print (self.playGameState)
 				self.game.changeState(self.playGameState)
 				
 	def draw(self, surface):

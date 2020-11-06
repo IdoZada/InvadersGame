@@ -28,6 +28,7 @@ The tank at the bottom of the screen.
 ----------------------------------------------------------------------------------------------------
 """
 
+
 class PlayerController:
 	
 	def __init__(self, x, y):
@@ -74,7 +75,8 @@ PlayerView
 Renders the player tank.
 ----------------------------------------------------------------------------------------------------
 """
-		
+
+
 class PlayerView:
 	
 	def __init__(self, player, imgpath):
@@ -92,6 +94,8 @@ PlayerLivesView
 Renders the number of lives left for the player.
 ----------------------------------------------------------------------------------------------------
 """
+
+
 class PlayerLivesView:
 	
 	def __init__(self, player, imgpath):
@@ -138,4 +142,3 @@ if ( __name__ == '__main__'):
 		
 		pygame.display.update()
 		fpsClock.tick(30)
-	

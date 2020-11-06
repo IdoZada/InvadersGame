@@ -107,6 +107,6 @@ class RaspberryPiGame(object):
 			self.mainwindow.blit(self.background , (0,0))
 			if ( self.currentState != None ):
 				self.currentState.draw ( self.mainwindow )
-				
+
 			pygame.display.update()
 			self.fpsClock.tick(100)
