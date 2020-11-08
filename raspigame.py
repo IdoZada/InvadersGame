@@ -74,10 +74,10 @@ class RaspberryPiGame(object):
 	Change the current state. If the newState is 'None' then the game will terminate.
 	"""
 	def changeState(self, newState):
-		if ( self.currentState != None ):
+		if self.currentState is not None:
 			self.currentState.onExit()
 			
-		if ( newState == None ):
+		if newState is None:
 			pygame.quit()
 			sys.exit()	
 			
@@ -90,7 +90,7 @@ class RaspberryPiGame(object):
 	"""
 	def run(self, initialState):
 		
-		self.changeState( initialState )
+		self.changeState(initialState)
 		
 		while True:
 			
@@ -101,12 +101,12 @@ class RaspberryPiGame(object):
 
 			gameTime = self.fpsClock.get_time()
 			
-			if ( self.currentState != None ):
-				self.currentState.update( gameTime )
+			if self.currentState is not None:
+				self.currentState.update(gameTime)
 				
-			self.mainwindow.blit(self.background , (0,0))
-			if ( self.currentState != None ):
-				self.currentState.draw ( self.mainwindow )
+			self.mainwindow.blit(self.background, (0, 0))
+			if self.currentState is not None:
+				self.currentState.draw(self.mainwindow)
 
 			pygame.display.update()
-			self.fpsClock.tick(100)
+			self.fpsClock.tick(60)

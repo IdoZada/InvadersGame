@@ -141,4 +141,4 @@ if ( __name__ == '__main__'):
 		playerLivesView.render(surface)
 		
 		pygame.display.update()
-		fpsClock.tick(30)
+		fpsClock.tick(60)
