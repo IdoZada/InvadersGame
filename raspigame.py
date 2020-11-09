@@ -62,7 +62,7 @@ class RaspberryPiGame(object):
 	def __init__(self, gameName, width, height):
 		
 		pygame.init()
-		pygame.display.set_caption(gameName);
+		pygame.display.set_caption(gameName)
 
 		self.fpsClock = pygame.time.Clock()
 		self.mainwindow = pygame.display.set_mode((width, height))
