@@ -27,9 +27,9 @@ class InterstitialState(GameState):
 		print(f'game time is: {gameTime} , wait timer : {self.waitTimer}')
 		self.waitTimer -= gameTime
 		if self.waitTimer < 0:
+			print(self.nextState)
 			self.game.changeState(self.nextState)
-			# TODO: Add previous timer between screens
-			# self.waitTimer = self.previousTimer
+			self.waitTimer = self.previousTimer
 			
 	def draw(self, surface):
 		self.font.centre(surface, self.message, surface.get_rect().height / 2)

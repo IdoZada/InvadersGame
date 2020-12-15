@@ -22,9 +22,7 @@ class MainMenuState(GameState):
 	def setOptionState(self,state):
 		self.optionGameState = state
 
-
 	def update(self, gameTime):
-		
 		keys = pygame.key.get_pressed()
 		if (keys[K_UP] or keys[K_DOWN]) and self.inputTick == 0:
 			self.inputTick = 250

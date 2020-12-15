@@ -47,14 +47,15 @@ class PlayGameState(GameState):
 			
 		if self.player_controller.model.lives == 0:
 			self.game.changeState(self.gameOverState)
-			
+			self.initialise()
+
 		if len(self.swarm_controller.invaders) == 0:
 			self.swarmSpeed -= 50
 			if self.swarmSpeed < 100:
 				self.swarmSpeed = 100
 			
 			self.swarm_controller.reset(48, self.swarmSpeed)
-			levelUpMessage = InterstitialState( invadersGame, 'Congratulations! Level Up!', 2000, self )
+			levelUpMessage = InterstitialState(self.game, 'Congratulations! Level Up!', 2000, self)
 			self.game.changeState(levelUpMessage)
 
 	def draw(self, surface):
