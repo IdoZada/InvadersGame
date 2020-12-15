@@ -26,20 +26,20 @@ class MainMenuState(GameState):
 	def update(self, gameTime):
 		
 		keys = pygame.key.get_pressed()
-		if ( (keys[K_UP] or keys[K_DOWN]) and self.inputTick == 0):
+		if (keys[K_UP] or keys[K_DOWN]) and self.inputTick == 0:
 			self.inputTick = 250
-			if ( keys[K_UP] ):
+			if keys[K_UP]:
 				self.index -= 1
-				if (self.index < 0):
+				if self.index < 0:
 					self.index = len(self.menuItems) -1
-			elif ( keys[K_DOWN] ):
+			elif keys[K_DOWN]:
 				self.index += 1
-				if (self.index == len(self.menuItems)):
+				if self.index == len(self.menuItems):
 					self.index = 0
-		elif ( self.inputTick >0 ):
+		elif self.inputTick > 0:
 			self.inputTick -= gameTime
 		
-		if ( self.inputTick < 0 ):
+		if self.inputTick < 0:
 			self.inputTick = 0
 			
 		if keys[K_RETURN]:
@@ -61,7 +61,7 @@ class MainMenuState(GameState):
 		for item in self.menuItems:
 			itemText = "  "
 			
-			if ( count == self.index ):
+			if count == self.index:
 				itemText = "> "
 				
 			itemText += item

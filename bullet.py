@@ -8,6 +8,8 @@ from pygame.locals import *
 	A single bullet for the player.
 ----------------------------------------------------------------------------------------------------
 """
+
+
 class BulletModel:
 	
 	def __init__(self, x, y):
@@ -24,6 +26,7 @@ Bullet Manager
 Manages the update for each bullet.
 ----------------------------------------------------------------------------------------------------
 """
+
 
 class BulletController:
 	
@@ -49,18 +52,19 @@ class BulletController:
 		
 		killList = []
 		
-		if (self.countdown > 0):
+		if self.countdown > 0:
 			self.countdown = self.countdown - gameTime
 		else:
 			self.countdown = 0
 		
 		for b in self.bullets:
-			b.update( self.speed * ( gameTime / 1000.0 ) )
-			if (b.y < 0):
+			b.update(self.speed * (gameTime / 1000.0))
+			if b.y < 0:
 				killList.append(b)
 				
 		for b in killList:
 			self.removeBullet(b)
+
 
 """
 ----------------------------------------------------------------------------------------------------
@@ -69,6 +73,7 @@ BulletView
 Renders the bullets for the player's missiles.
 ----------------------------------------------------------------------------------------------------
 """
+
 
 class BulletView:
 	

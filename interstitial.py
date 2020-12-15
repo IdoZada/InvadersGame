@@ -11,6 +11,8 @@ from pygamefont import *
 	messages
 ----------------------------------------------------------------------------------------------------
 """
+
+
 class InterstitialState(GameState):
 	
 	def __init__(self, game, msg, waitTimeMs, nextState):
@@ -24,9 +26,9 @@ class InterstitialState(GameState):
 	def update(self, gameTime):
 		print(f'game time is: {gameTime} , wait timer : {self.waitTimer}')
 		self.waitTimer -= gameTime
-		if ( self.waitTimer < 0 ):
+		if self.waitTimer < 0:
 			self.game.changeState(self.nextState)
-			#TODO: Add previous timer between screens
+			# TODO: Add previous timer between screens
 			# self.waitTimer = self.previousTimer
 			
 	def draw(self, surface):
