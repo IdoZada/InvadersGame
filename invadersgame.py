@@ -28,8 +28,9 @@ class PlayGameState(GameState):
 		swarm_renderer = InvaderView(self.swarm_controller, 'invaders.png')
 
 		self.player_controller = PlayerController(0, 540)
-		player_renderer = PlayerView(self.player_controller, 'ship.png')
-		lives_renderer = PlayerLivesView(self.player_controller, 'ship.png')
+		print(self.game.spaceship)
+		player_renderer = PlayerView(self.player_controller, self.game.spaceship)
+		lives_renderer = PlayerLivesView(self.player_controller, self.game.spaceship)
 		bullet_renderer = BulletView(self.player_controller.bullets, 'bullet.png')
 		alienbullet_renderer = BulletView(self.swarm_controller.bullets, 'alienbullet.png')
 
@@ -38,10 +39,13 @@ class PlayGameState(GameState):
 
 		explosion_view = ExplosionView(explosion_controller.list.explosions, 'explosion.png', 32, 32)
 
-		self.renderers = [ alienbullet_renderer, swarm_renderer, bullet_renderer, player_renderer, lives_renderer, explosion_view ]
-		self.controllers = [ self.swarm_controller, self.player_controller, collision_controller, explosion_controller ]
+		self.renderers = [alienbullet_renderer, swarm_renderer, bullet_renderer, player_renderer, lives_renderer, explosion_view]
+		self.controllers = [self.swarm_controller, self.player_controller, collision_controller, explosion_controller]
 
 	def update(self, gameTime):
+		self.renderers[3] = PlayerView(self.player_controller, self.game.spaceship)
+		self.renderers[4] = PlayerLivesView(self.player_controller, self.game.spaceship)
+
 		for ctrl in self.controllers:
 			ctrl.update(gameTime)	
 			
@@ -55,7 +59,7 @@ class PlayGameState(GameState):
 				self.swarmSpeed = 100
 			
 			self.swarm_controller.reset(48, self.swarmSpeed)
-			levelUpMessage = InterstitialState(self.game, 'Congratulations! Level Up!', 2000, self)
+			levelUpMessage = InterstitialState(self.game, 'Congratulations Level Up!', 2000, self)
 			self.game.changeState(levelUpMessage)
 
 	def draw(self, surface):

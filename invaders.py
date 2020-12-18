@@ -2,11 +2,12 @@ import pygame, os, sys
 from pygame.locals import *
 
 # Our imports
-from raspigame import *
+from background import BackgroundState
 from interstitial import *
 from menu import MainMenuState
 from invadersgame import PlayGameState
 from option import OptionState
+from spaceship import SpaceShipState
 
 """
 ----------------------------------------------------------------------------------------------------
@@ -27,11 +28,14 @@ getOptionState = InterstitialState(invadersGame, 'Enter To Options!', 2000, opti
 mainMenuState.setOptionState(getOptionState)
 getMainMenuState = InterstitialState(invadersGame, 'Back To Main Menu!', 2000, mainMenuState)
 optionState.setMainMenuState(getMainMenuState)
+backgroundState = BackgroundState(invadersGame)
+getBackgroundState = InterstitialState(invadersGame, 'Go to Background!', 2000, backgroundState)
+optionState.setBackgroundState(getBackgroundState)
+backgroundState.setOptionState(getOptionState)
+spaceShipState = SpaceShipState(invadersGame)
+getSpaceShipState = InterstitialState(invadersGame, 'Go to Spaceship!', 2000, spaceShipState)
+optionState.setSpaceShipState(getSpaceShipState)
+spaceShipState.setOptionState(getOptionState)
 invadersGame.run(mainMenuState)
-
-
-# TODO: #### Option ######
-
-# optionState.setMainMenuState(mainMenuState)
 
 

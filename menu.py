@@ -53,7 +53,6 @@ class MainMenuState(GameState):
 	def draw(self, surface):
 		
 		self.font.centre(surface, "Invaders! From Space!", 48)
-		
 		count = 0
 		y = surface.get_rect().height - len(self.menuItems)*110
 		for item in self.menuItems:

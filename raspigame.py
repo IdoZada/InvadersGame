@@ -55,6 +55,8 @@ Basic game object-oriented framework for the Raspberry Pi. Users create 'states'
 being displayed on-screen / updated at any particular time.
 ----------------------------------------------------------------------------------------------------
 """
+
+
 class RaspberryPiGame(object):
 			
 	"""
@@ -70,6 +72,7 @@ class RaspberryPiGame(object):
 		# self.background = pygame.Color(0, 0, 0)
 		self.background = pygame.transform.scale(pygame.image.load("background-black.png"), (width, height))
 		self.currentState = None
+		self.spaceship = 'ship1.png'
 		
 	"""
 	Change the current state. If the newState is 'None' then the game will terminate.

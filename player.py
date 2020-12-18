@@ -20,6 +20,7 @@ class PlayerModel:
         self.y = y
         self.lives = 3
         self.score = 0
+        self.level = 1
         self.speed = 100  # pixels per second
 
 
@@ -126,8 +127,8 @@ if __name__ == '__main__':
     black = pygame.Color(0, 0, 0)
 
     player = PlayerController(0, 400)
-    playerView = PlayerView(player, 'ship.png')
-    playerLivesView = PlayerLivesView(player, 'ship.png')
+    playerView = PlayerView(player, 'ship1.png')
+    playerLivesView = PlayerLivesView(player, 'ship1.png')
 
     while True:
 

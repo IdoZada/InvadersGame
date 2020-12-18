@@ -2,7 +2,6 @@ from raspigame import *
 from pygamefont import *
 
 
-#TODO: Connect to the mainmenu, buttons
 class OptionState(GameState):
 
     def __init__(self, game):
@@ -11,37 +10,45 @@ class OptionState(GameState):
         self.font = FontType("david", 50, (255, 255, 255))
         self.index = 0
         self.inputTick = 0
-        self.OptionItems = ['Default', 'Ok']
+        self.OptionItems = ['Background', 'Spaceship', 'Back']
+        self.backgroundState = None
+        self.spaceShipState = None
 
     def setMainMenuState(self, state):
         self.mainMenuState = state
 
+    def setBackgroundState(self, state):
+        self.backgroundState = state
+
+    def setSpaceShipState(self, state):
+        self.spaceShipState = state
+
     def update(self, gameTime):
 
         keys = pygame.key.get_pressed()
-        if ((keys[K_UP] or keys[K_DOWN]) and self.inputTick == 0):
+        if (keys[K_UP] or keys[K_DOWN]) and self.inputTick == 0:
             self.inputTick = 250
-            if (keys[K_UP]):
+            if keys[K_UP]:
                 self.index -= 1
-                if (self.index < 0):
+                if self.index < 0:
                     self.index = len(self.OptionItems) - 1
-            elif (keys[K_DOWN]):
+            elif keys[K_DOWN]:
                 self.index += 1
-                if (self.index == len(self.OptionItems)):
+                if self.index == len(self.OptionItems):
                     self.index = 0
-        elif (self.inputTick > 0):
+        elif self.inputTick > 0:
             self.inputTick -= gameTime
 
-        if (self.inputTick < 0):
+        if self.inputTick < 0:
             self.inputTick = 0
 
-        if (keys[K_RETURN]):
-            if (self.index == 1):
-                print(self.mainMenuState)
-                self.game.changeState(self.mainMenuState)  # exit the game
-            elif (self.index == 0):
-                print(self.playGameState)
-                self.game.changeState(self.playGameState)
+        if keys[K_RETURN]:
+            if self.index == 2:
+                self.game.changeState(self.mainMenuState)  # back to main menu
+            elif self.index == 0:
+                self.game.changeState(self.backgroundState)  # go to background state
+            elif self.index == 1:
+                self.game.changeState(self.spaceShipState)  # go to spaceship state
 
     def draw(self, surface):
 
@@ -52,7 +59,7 @@ class OptionState(GameState):
         for item in self.OptionItems:
             itemText = "  "
 
-            if (count == self.index):
+            if count == self.index:
                 itemText = "> "
 
             itemText += item
