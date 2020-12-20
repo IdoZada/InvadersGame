@@ -12,11 +12,12 @@ class SpaceShipState(GameState):
         self.index = 0
         self.inputTick = 0
         self.OptionItems = []
-        self.spaceships = ['ship1.png', 'ship2.png', 'ship3.png', 'ship4.png']
+        self.spaceships = ['ship1.png', 'ship2.png', 'ship3.png', 'ship4.png', 'ship5.png', 'ship6.png']
         self.mySpaceships = self.loadSpaceships(self.spaceships)
         SCREEN_W = 800
         SCREEN_H = 600
         self.surface = pygame.display.set_mode((SCREEN_W, SCREEN_H))
+
 
     def setMainMenuState(self, state):
         self.mainMenuState = state
@@ -24,11 +25,11 @@ class SpaceShipState(GameState):
     def setOptionState(self, state):
         self.optionState = state
 
-    def loadSpaceships(self, backgrounds):
+    def loadSpaceships(self, spaceships):
         resized_backgrounds = []
-        for background in backgrounds:
-            pic = pygame.image.load(background)
-            pic = pygame.transform.scale(pic, (100, 100))
+        for spaceship in spaceships:
+            pic = pygame.image.load(spaceship)
+            pic = pygame.transform.scale(pic, (100,100))
             resized_backgrounds.append(pic)
         return resized_backgrounds
 

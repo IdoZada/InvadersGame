@@ -66,7 +66,8 @@ class RaspberryPiGame(object):
 		
 		pygame.init()
 		pygame.display.set_caption(gameName)
-
+		self.gameSound = pygame.mixer.Sound('background_music2.wav')
+		self.gameSound.play(20)
 		self.fpsClock = pygame.time.Clock()
 		self.mainwindow = pygame.display.set_mode((width, height))
 		# self.background = pygame.Color(0, 0, 0)
@@ -83,8 +84,8 @@ class RaspberryPiGame(object):
 			
 		if newState is None:
 			pygame.quit()
-			sys.exit()	
-			
+			sys.exit()
+
 		oldState = self.currentState
 		self.currentState = newState
 		newState.onEnter(oldState)
