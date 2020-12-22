@@ -9,9 +9,10 @@ class BackgroundState(GameState):
         self.mainMenuState = None
         self.optionState = None
         self.font = FontType("david", 50, (255, 255, 255))
+        self.font_text = FontType("david", 25, (255, 255, 255))
         self.index = 0
         self.inputTick = 0
-        self.OptionItems = ['Press enter to choose your background']
+        self.OptionItems = ['Press Enter to select your background']
         self.backgrounds = ['background_space.jpg', 'background_space_blue.png', 'background_space_purple.jpg','background-black.png']
         self.myBackgrounds = self.loadBackgrounds(self.backgrounds)
         SCREEN_W = 800
@@ -57,19 +58,9 @@ class BackgroundState(GameState):
             self.game.background = pygame.transform.scale(pygame.image.load(self.backgrounds[self.index]), (800, 600))
 
     def draw(self, surface):
-
         self.font.centre(surface, "Background", 48)
         surface.blit(self.myBackgrounds[self.index], (200, 150))
         surface.blit(pygame.transform.scale(pygame.image.load('right_arrow.png'), (70, 70)), (680, 250))
         surface.blit(pygame.transform.scale(pygame.image.load('left_arrow.png'), (70, 70)), (60, 250))
-        count = 0
         y = surface.get_rect().height - len(self.OptionItems) * 110
-        for item in self.OptionItems:
-            itemText = "  "
-
-
-            itemText += item
-            self.font.centre(surface, "Background", 48)
-            self.font.draw(surface, itemText, 100, y)
-            y += 50
-            count += 1
+        self.font_text.draw(surface, self.OptionItems[0], 210, y)

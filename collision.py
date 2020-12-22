@@ -94,14 +94,16 @@ class CollisionController:
 		self.alienDeadSound = pygame.mixer.Sound('aliendie.wav')
 		self.playerDie = pygame.mixer.Sound('playerdie.wav')
 
-#	def render(self, surface):
-#		for b in self.BulletController.bullets:
-#			pygame.draw.rect(surface, (255, 0, 0), (b.x+3, b.y+3, 8, 12), 1)
+	# def render(self, surface):
+	# 	for b in self.BulletController.bullets:
+	# 		pygame.draw.rect(surface, (255, 0, 0), (b.x+3, b.y+3, 8, 12), 1)
 
 	def update(self, gameTime):
 
 		aliens = []
 		bullets = []
+
+
 
 		for b in self.BulletController.bullets:
 
@@ -131,6 +133,10 @@ class CollisionController:
 				playerHit = True
 				break
 
+
+		# if self.swarm.collision:
+		# 	playerHit = True
+
 		if playerHit:
 			self.EnemyBullets.clear()
 			self.player.bullets.clear()
@@ -141,3 +147,4 @@ class CollisionController:
 				self.expCtrl.list.add((self.player.model.x, self.player.model.y, 6, 50), getReadyState)
 
 			self.playerDie.play()
+

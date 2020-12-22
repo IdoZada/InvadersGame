@@ -9,9 +9,10 @@ class SpaceShipState(GameState):
         self.mainMenuState = None
         self.optionState = None
         self.font = FontType("david", 50, (255, 255, 255))
+        self.font_text = FontType("david", 25, (255, 255, 255))
         self.index = 0
         self.inputTick = 0
-        self.OptionItems = []
+        self.OptionItems = ['Press Enter to select your spaceship']
         self.spaceships = ['ship1.png', 'ship2.png', 'ship3.png', 'ship4.png', 'ship5.png', 'ship6.png']
         self.mySpaceships = self.loadSpaceships(self.spaceships)
         SCREEN_W = 800
@@ -64,15 +65,5 @@ class SpaceShipState(GameState):
         surface.blit(pygame.transform.scale(pygame.image.load('right_arrow.png'), (70, 70)), (680, 250))
         surface.blit(pygame.transform.scale(pygame.image.load('left_arrow.png'), (70, 70)), (60, 250))
 
-        count = 0
         y = surface.get_rect().height - len(self.OptionItems) * 110
-        for item in self.OptionItems:
-            itemText = "  "
-
-            if count == self.index:
-                itemText = "> "
-
-            itemText += item
-            self.font.draw(surface, itemText, 300, y)
-            y += 50
-            count += 1
+        self.font_text.draw(surface, self.OptionItems[0], 220, y)
