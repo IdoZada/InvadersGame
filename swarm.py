@@ -1,17 +1,17 @@
 from bullet import *
+from interstitial import InterstitialState
+from menu import MainMenuState
 
 """
 ----------------------------------------------------------------------------------------------------
-	InvaderModel
-	
-	Representation of an alien lifeform. Boiled down to its basic attributes; position on the 
-	playing field, its type and the current animation frame.
+InvaderModel
+Representation of an alien lifeform. Boiled down to its basic attributes; position on the 
+playing field, its type and the current animation frame.
 ----------------------------------------------------------------------------------------------------
 """
 
 
 class InvaderModel:
-
     def __init__(self, x, y, alientype):
         self.x = x
         self.y = y
@@ -30,9 +30,8 @@ class InvaderModel:
 
 """
 ----------------------------------------------------------------------------------------------------
-	Swarm
-	
-	The swarm updates all the alien invaders. It handles movement and collision detection.
+Swarm
+The swarm updates all the alien invaders. It handles movement and collision detection.
 ----------------------------------------------------------------------------------------------------
 """
 
@@ -45,7 +44,7 @@ class SwarmController:
         self.framecount = initialframeticks
         self.invaders = []
         self.sx = -8
-        self.movedown = False
+        self.move_down = False
         self.alienslanded = False
         self.bullets = BulletController(200)  # pixels per sec
         self.alienShooter = 3  # each 3rd alien (to start with) fires
@@ -76,8 +75,8 @@ class SwarmController:
         movesideways = True
 
         if self.framecount < 0:
-            if self.movedown:
-                self.movedown = False
+            if self.move_down:
+                self.move_down = False
                 movesideways = False
                 self.sx *= -1
                 self.bulletDropTime -= 250
@@ -101,9 +100,9 @@ class SwarmController:
             x, y, width, height = self.getarea()
 
             if x <= 0 and self.sx < 0 or x + width >= 800 and self.sx > 0:
-                # if y + height >= 250:
-                # 	self.collision = True
-                self.movedown = True
+                if y + height >= 500:
+                    self.collision = True
+                self.move_down = True
 
         self.shootTimer -= gameTime
         if self.shootTimer <= 0:

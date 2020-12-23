@@ -101,7 +101,6 @@ Renders the number of lives left for the player.
 
 
 class PlayerLivesView:
-
     def __init__(self, player, imgpath):
         self.player = player
         self.image = pygame.image.load(imgpath)
@@ -114,7 +113,8 @@ class PlayerLivesView:
             surface.blit(self.image, (x, 8, 32, 32))
             x += 40
 
-        self.font.centre(surface, '1UP SCORE: ' + str(self.player.model.score), 10)
+        self.font.centre(surface, 'Score:' + ' ' + str(self.player.model.score), 10)
+        self.font.draw(surface, 'Level:' + ' ' + str(self.player.model.level), 700, 10)
 
 
 if __name__ == '__main__':

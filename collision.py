@@ -6,145 +6,146 @@ from pygame.locals import *
 from player import *
 from bullet import *
 from swarm import *
+from invadersgame import *
 from interstitial import *
 
 
 class ExplosionModel:
 
-	def __init__(self, x, y, maxFrames, speed, nextState = None):
-		self.x = x
-		self.y = y
-		self.maxFrames = maxFrames
-		self.speed = speed
-		self.initialSpeed = speed
-		self.frame = 0
-		self.nextState = nextState
+    def __init__(self, x, y, maxFrames, speed, nextState=None):
+        self.x = x
+        self.y = y
+        self.maxFrames = maxFrames
+        self.speed = speed
+        self.initialSpeed = speed
+        self.frame = 0
+        self.nextState = nextState
 
 
 class ExplosionModelList:
 
-	def __init__(self, game):
-		self.explosions = []
-		self.game = game
+    def __init__(self, game):
+        self.explosions = []
+        self.game = game
 
-	def add(self, explosion, nextState = None):
-		x, y, frames, speed = explosion
-		exp = ExplosionModel(x, y, frames, speed, nextState)
-		self.explosions.append(exp)
+    def add(self, explosion, nextState=None):
+        x, y, frames, speed = explosion
+        exp = ExplosionModel(x, y, frames, speed, nextState)
+        self.explosions.append(exp)
 
-	def cleanUp(self):
+    def cleanUp(self):
 
-		killList = []
+        killList = []
 
-		for e in self.explosions:
-			if e.frame == e.maxFrames:
-				killList.append(e)
+        for e in self.explosions:
+            if e.frame == e.maxFrames:
+                killList.append(e)
 
-		nextState = None
+        nextState = None
 
-		for e in killList:
-			if nextState is None and e.nextState is not None:
-				nextState = e.nextState
+        for e in killList:
+            if nextState is None and e.nextState is not None:
+                nextState = e.nextState
 
-			self.explosions.remove(e)
+            self.explosions.remove(e)
 
-		if nextState is not None:
-			self.game.changeState(nextState)
+        if nextState is not None:
+            self.game.changeState(nextState)
 
 
 class ExplosionView:
 
-	def __init__(self, explosions, explosionImg, width, height):
-		self.image = pygame.image.load(explosionImg)
-		self.image.set_colorkey((255, 0, 255))
-		self.explosions = explosions
-		self.width = width
-		self.height = height
+    def __init__(self, explosions, explosionImg, width, height):
+        self.image = pygame.image.load(explosionImg)
+        self.image.set_colorkey((255, 0, 255))
+        self.explosions = explosions
+        self.width = width
+        self.height = height
 
-	def render(self, surface):
-		for e in self.explosions:
-			surface.blit(self.image, (e.x, e.y, self.width, self.height), (e.frame * self.width, 0, self.width, self.height))
+    def render(self, surface):
+        for e in self.explosions:
+            surface.blit(self.image, (e.x, e.y, self.width, self.height),
+                         (e.frame * self.width, 0, self.width, self.height))
 
 
 class ExplosionController:
 
-	def __init__(self, game):
-		self.list = ExplosionModelList(game)
+    def __init__(self, game):
+        self.list = ExplosionModelList(game)
 
-	def update(self, gameTime):
-		for e in self.list.explosions:
-			e.speed -= gameTime
-			if e.speed < 0:
-				e.speed += e.initialSpeed
-				e.frame += 1
+    def update(self, gameTime):
+        for e in self.list.explosions:
+            e.speed -= gameTime
+            if e.speed < 0:
+                e.speed += e.initialSpeed
+                e.frame += 1
 
-		self.list.cleanUp()
+        self.list.cleanUp()
 
 
 class CollisionController:
 
-	def __init__(self, game, swarm, player, explosionController, playState):
-		self.swarm = swarm
-		self.player = player
-		self.game = game
-		self.BulletController = player.bullets
-		self.EnemyBullets = swarm.bullets
-		self.expCtrl = explosionController
-		self.playGameState = playState
-		self.alienDeadSound = pygame.mixer.Sound('aliendie.wav')
-		self.playerDie = pygame.mixer.Sound('playerdie.wav')
+    def __init__(self, game, swarm, player, explosionController, playState):
+        self.swarm = swarm
+        self.player = player
+        self.game = game
+        self.BulletController = player.bullets
+        self.EnemyBullets = swarm.bullets
+        self.expCtrl = explosionController
+        self.playGameState = playState
+        self.alienDeadSound = pygame.mixer.Sound('aliendie.wav')
+        self.playerDie = pygame.mixer.Sound('playerdie.wav')
 
-	# def render(self, surface):
-	# 	for b in self.BulletController.bullets:
-	# 		pygame.draw.rect(surface, (255, 0, 0), (b.x+3, b.y+3, 8, 12), 1)
+    # def render(self, surface):
+    # 	for b in self.BulletController.bullets:
+    # 		pygame.draw.rect(surface, (255, 0, 0), (b.x+3, b.y+3, 8, 12), 1)
 
-	def update(self, gameTime):
+    def update(self, gameTime):
 
-		aliens = []
-		bullets = []
+        aliens = []
+        bullets = []
 
+        for b in self.BulletController.bullets:
 
+            if bullets.count(b) > 0:
+                continue
 
-		for b in self.BulletController.bullets:
+            for inv in self.swarm.invaders:
+                if inv.hit(b.x + 3, b.y + 3, 8, 12):
+                    aliens.append(inv)
+                    bullets.append(b)
+                    break
 
-			if bullets.count(b) > 0:
-				continue
+        for b in bullets:
+            self.BulletController.removeBullet(b)
 
-			for inv in self.swarm.invaders:
-				if inv.hit(b.x+3, b.y+3, 8, 12):
-					aliens.append(inv)
-					bullets.append(b)
-					break
+        for inv in aliens:
+            self.swarm.invaders.remove(inv)
+            self.player.model.score += (10 * (inv.alientype + 1))
+            self.expCtrl.list.add((inv.x, inv.y, 6, 50))
+            self.alienDeadSound.play()
 
-		for b in bullets:
-			self.BulletController.removeBullet(b)
+        playerHit = False
 
-		for inv in aliens:
-			self.swarm.invaders.remove(inv)
-			self.player.model.score += (10 * (inv.alientype + 1))
-			self.expCtrl.list.add((inv.x, inv.y, 6, 50))
-			self.alienDeadSound.play()
+        for b in self.EnemyBullets.bullets:
+            if self.player.hit(b.x + 3, b.y + 3, 8, 12):
+                self.player.model.lives -= 1
+                playerHit = True
+                break
 
-		playerHit = False
+        if self.swarm.collision:
+            self.playerDie.play()
+            self.playGameState.initialise()
+            tryAgainMessage = InterstitialState(self.game, 'Try Again!', 2000, self.playGameState)
+            self.game.changeState(tryAgainMessage)
 
-		for b in self.EnemyBullets.bullets:
-			if self.player.hit(b.x+3, b.y+3, 8, 12):
-				self.player.model.lives -= 1
-				playerHit = True
-				break
+        if playerHit:
+            self.EnemyBullets.clear()
+            self.player.bullets.clear()
 
+            if self.player.model.lives > 0:
+                self.player.pause(True)
+                getReadyState = InterstitialState(self.game, 'Get Ready!', 2000, self.playGameState)
+                self.expCtrl.list.add((self.player.model.x, self.player.model.y, 6, 50), getReadyState)
 
-		# if self.swarm.collision:
-		# 	playerHit = True
-
-		if playerHit:
-			self.EnemyBullets.clear()
-			self.player.bullets.clear()
-
-			if self.player.model.lives > 0:
-				self.player.pause(True)
-				getReadyState = InterstitialState(self.game, 'Get Ready!', 2000, self.playGameState)
-				self.expCtrl.list.add((self.player.model.x, self.player.model.y, 6, 50), getReadyState)
-
-			self.playerDie.play()
-
+            self.playerDie.play()
