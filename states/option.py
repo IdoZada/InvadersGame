@@ -1,5 +1,5 @@
-from raspigame import *
-from pygamefont import *
+from states.Invaders_Game import *
+from utils.pygamefont import *
 
 
 class OptionState(GameState):
@@ -7,7 +7,7 @@ class OptionState(GameState):
     def __init__(self, game):
         super(OptionState, self).__init__(game)
         self.mainMenuState = None
-        self.font = FontType("david", 50, (255, 255, 255))
+        self.font = FontType("Ariel", 50, (255, 255, 255))
         self.index = 0
         self.inputTick = 0
         self.OptionItems = ['Background', 'Spaceship', 'Back']

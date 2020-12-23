@@ -1,13 +1,7 @@
 # Our imports
 
-import pygame, os, sys
-from pygame.locals import *
-
-from player import *
-from bullet import *
-from swarm import *
-from invadersgame import *
-from interstitial import *
+from states.PlayGame import *
+from states.interstitial import *
 
 
 class ExplosionModel:
@@ -93,8 +87,8 @@ class CollisionController:
         self.EnemyBullets = swarm.bullets
         self.expCtrl = explosionController
         self.playGameState = playState
-        self.alienDeadSound = pygame.mixer.Sound('aliendie.wav')
-        self.playerDie = pygame.mixer.Sound('playerdie.wav')
+        self.alienDeadSound = pygame.mixer.Sound('media/aliendie.wav')
+        self.playerDie = pygame.mixer.Sound('media/playerdie.wav')
 
     # def render(self, surface):
     # 	for b in self.BulletController.bullets:

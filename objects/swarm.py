@@ -1,6 +1,4 @@
-from bullet import *
-from interstitial import InterstitialState
-from menu import MainMenuState
+from objects.bullet import *
 
 """
 ----------------------------------------------------------------------------------------------------

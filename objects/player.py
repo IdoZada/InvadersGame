@@ -1,8 +1,5 @@
-import pygame, os, sys
-from pygame.locals import *
-
-from bullet import *
-from pygamefont import *
+from objects.bullet import *
+from utils.pygamefont import *
 
 """
 ----------------------------------------------------------------------------------------------------
@@ -43,7 +40,7 @@ class PlayerController:
         # self.score = 0
         # self.speed = 100 # pixels per sec
         self.bullets = BulletController(-200)  # pixels per sec
-        self.shootSound = pygame.mixer.Sound('playershoot.wav')
+        self.shootSound = pygame.mixer.Sound('media/playershoot.wav')
 
     def pause(self, isPaused):
         self.isPaused = isPaused
@@ -127,8 +124,8 @@ if __name__ == '__main__':
     black = pygame.Color(0, 0, 0)
 
     player = PlayerController(0, 400)
-    playerView = PlayerView(player, 'ship1.png')
-    playerLivesView = PlayerLivesView(player, 'ship1.png')
+    playerView = PlayerView(player, 'media/ship1.png')
+    playerLivesView = PlayerLivesView(player, 'media/ship1.png')
 
     while True:
 

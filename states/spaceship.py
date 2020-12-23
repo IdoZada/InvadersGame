@@ -1,5 +1,5 @@
-from raspigame import *
-from pygamefont import *
+from states.Invaders_Game import *
+from utils.pygamefont import *
 
 
 class SpaceShipState(GameState):
@@ -8,17 +8,17 @@ class SpaceShipState(GameState):
         super(SpaceShipState, self).__init__(game)
         self.mainMenuState = None
         self.optionState = None
-        self.font = FontType("david", 50, (255, 255, 255))
-        self.font_text = FontType("david", 25, (255, 255, 255))
+        self.font = FontType("Ariel", 50, (255, 255, 255))
+        self.font_text = FontType("Ariel", 25, (255, 255, 255))
         self.index = 0
         self.inputTick = 0
         self.OptionItems = ['Press Enter to select your spaceship']
-        self.spaceships = ['ship1.png', 'ship2.png', 'ship3.png', 'ship4.png', 'ship5.png', 'ship6.png']
+        self.spaceships = ['media/ship1.png', 'media/ship2.png', 'media/ship3.png', 'media/ship4.png',
+                           'media/ship5.png', 'media/ship6.png']
         self.mySpaceships = self.loadSpaceships(self.spaceships)
         SCREEN_W = 800
         SCREEN_H = 600
         self.surface = pygame.display.set_mode((SCREEN_W, SCREEN_H))
-
 
     def setMainMenuState(self, state):
         self.mainMenuState = state
@@ -26,11 +26,12 @@ class SpaceShipState(GameState):
     def setOptionState(self, state):
         self.optionState = state
 
-    def loadSpaceships(self, spaceships):
+    @staticmethod
+    def loadSpaceships(spaceships):
         resized_backgrounds = []
         for spaceship in spaceships:
             pic = pygame.image.load(spaceship)
-            pic = pygame.transform.scale(pic, (100,100))
+            pic = pygame.transform.scale(pic, (100, 100))
             resized_backgrounds.append(pic)
         return resized_backgrounds
 
@@ -62,8 +63,8 @@ class SpaceShipState(GameState):
     def draw(self, surface):
         self.font.centre(surface, "Spaceship", 48)
         surface.blit(self.mySpaceships[self.index], (350, 250))
-        surface.blit(pygame.transform.scale(pygame.image.load('right_arrow.png'), (70, 70)), (680, 250))
-        surface.blit(pygame.transform.scale(pygame.image.load('left_arrow.png'), (70, 70)), (60, 250))
+        surface.blit(pygame.transform.scale(pygame.image.load('media/right_arrow.png'), (70, 70)), (680, 250))
+        surface.blit(pygame.transform.scale(pygame.image.load('media/left_arrow.png'), (70, 70)), (60, 250))
 
         y = surface.get_rect().height - len(self.OptionItems) * 110
-        self.font_text.draw(surface, self.OptionItems[0], 220, y)
+        self.font_text.draw(surface, self.OptionItems[0], 250, y)

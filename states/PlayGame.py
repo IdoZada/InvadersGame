@@ -1,11 +1,7 @@
-import pygame, os, sys
-from pygame.locals import *
+from objects.collision import *
 
-from raspigame import *
-from swarm import *
-from player import *
-from collision import *
-from invadersgame import *
+from objects.player import *
+from objects.swarm import *
 
 
 class PlayGameState(GameState):
@@ -25,19 +21,19 @@ class PlayGameState(GameState):
 
 	def initialise(self):
 		self.swarm_controller = SwarmController(800, 48, self.swarmSpeed)
-		swarm_renderer = InvaderView(self.swarm_controller, 'monsters_anim.png')
+		swarm_renderer = InvaderView(self.swarm_controller, 'media/monsters_anim.png')
 
 		self.player_controller = PlayerController(0, 540)
 		print(self.game.spaceship)
 		player_renderer = PlayerView(self.player_controller, self.game.spaceship)
 		lives_renderer = PlayerLivesView(self.player_controller, self.game.spaceship)
-		bullet_renderer = BulletView(self.player_controller.bullets, 'bullet.png')
-		alienbullet_renderer = BulletView(self.swarm_controller.bullets, 'alienbullet.png')
+		bullet_renderer = BulletView(self.player_controller.bullets, 'media/bullet.png')
+		alienbullet_renderer = BulletView(self.swarm_controller.bullets, "media/alienbullet.png")
 
 		explosion_controller = ExplosionController(self.game)
 		collision_controller = CollisionController(self.game, self.swarm_controller, self.player_controller, explosion_controller, self)
 
-		explosion_view = ExplosionView(explosion_controller.list.explosions, 'explosion.png', 32, 32)
+		explosion_view = ExplosionView(explosion_controller.list.explosions, 'media/explosion.png', 32, 32)
 
 		self.renderers = [alienbullet_renderer, swarm_renderer, bullet_renderer, player_renderer, lives_renderer, explosion_view]
 		self.controllers = [self.swarm_controller, self.player_controller, collision_controller, explosion_controller]

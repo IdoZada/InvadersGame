@@ -1,8 +1,5 @@
-import pygame, os, sys
-from pygame.locals import *
-
-from raspigame import *
-from pygamefont import *
+from states.Invaders_Game import *
+from utils.pygamefont import *
 """
 ----------------------------------------------------------------------------------------------------
 	InterstitialState
@@ -18,7 +15,7 @@ class InterstitialState(GameState):
 	def __init__(self, game, msg, waitTimeMs, nextState):
 		super(InterstitialState, self).__init__(game)
 		self.nextState = nextState
-		self.font = FontType("david", 50,(255,255,255))
+		self.font = FontType("Ariel", 50,(255,255,255))
 		self.message = msg
 		self.previousTimer = waitTimeMs
 		self.waitTimer = waitTimeMs

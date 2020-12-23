@@ -57,7 +57,7 @@ being displayed on-screen / updated at any particular time.
 """
 
 
-class RaspberryPiGame(object):
+class InvadersGame(object):
 			
 	"""
 	Initialise the Raspberry Pi Game class.
@@ -66,14 +66,14 @@ class RaspberryPiGame(object):
 		
 		pygame.init()
 		pygame.display.set_caption(gameName)
-		self.gameSound = pygame.mixer.Sound('background_music2.wav')
+		self.gameSound = pygame.mixer.Sound('media/background_music2.wav')
 		self.gameSound.play(20)
 		self.fpsClock = pygame.time.Clock()
 		self.mainwindow = pygame.display.set_mode((width, height))
 		# self.background = pygame.Color(0, 0, 0)
-		self.background = pygame.transform.scale(pygame.image.load("background-black.png"), (width, height))
+		self.background = pygame.transform.scale(pygame.image.load("media/background-black.png"), (width, height))
 		self.currentState = None
-		self.spaceship = 'ship1.png'
+		self.spaceship = 'media/ship1.png'
 		
 	"""
 	Change the current state. If the newState is 'None' then the game will terminate.
