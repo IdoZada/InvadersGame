@@ -40,7 +40,7 @@ class PlayerController:
         # self.score = 0
         # self.speed = 100 # pixels per sec
         self.bullets = BulletController(-200)  # pixels per sec
-        self.shootSound = pygame.mixer.Sound('media/playershoot.wav')
+        self.shootSound = pygame.mixer.Sound('../media/playershoot.wav')
 
     def pause(self, isPaused):
         self.isPaused = isPaused

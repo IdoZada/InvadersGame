@@ -87,8 +87,8 @@ class CollisionController:
         self.EnemyBullets = swarm.bullets
         self.expCtrl = explosionController
         self.playGameState = playState
-        self.alienDeadSound = pygame.mixer.Sound('media/aliendie.wav')
-        self.playerDie = pygame.mixer.Sound('media/playerdie.wav')
+        self.alienDeadSound = pygame.mixer.Sound('../media/aliendie.wav')
+        self.playerDie = pygame.mixer.Sound('../media/playerdie.wav')
 
     # def render(self, surface):
     # 	for b in self.BulletController.bullets:

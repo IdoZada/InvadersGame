@@ -13,8 +13,8 @@ class SpaceShipState(GameState):
         self.index = 0
         self.inputTick = 0
         self.OptionItems = ['Press Enter to select your spaceship']
-        self.spaceships = ['media/ship1.png', 'media/ship2.png', 'media/ship3.png', 'media/ship4.png',
-                           'media/ship5.png', 'media/ship6.png']
+        self.spaceships = ['../media/ship1.png', '../media/ship2.png', '../media/ship3.png', '../media/ship4.png',
+                           '../media/ship5.png', '../media/ship6.png']
         self.mySpaceships = self.loadSpaceships(self.spaceships)
         SCREEN_W = 800
         SCREEN_H = 600
@@ -63,8 +63,8 @@ class SpaceShipState(GameState):
     def draw(self, surface):
         self.font.centre(surface, "Spaceship", 48)
         surface.blit(self.mySpaceships[self.index], (350, 250))
-        surface.blit(pygame.transform.scale(pygame.image.load('media/right_arrow.png'), (70, 70)), (680, 250))
-        surface.blit(pygame.transform.scale(pygame.image.load('media/left_arrow.png'), (70, 70)), (60, 250))
+        surface.blit(pygame.transform.scale(pygame.image.load('../media/right_arrow.png'), (70, 70)), (680, 250))
+        surface.blit(pygame.transform.scale(pygame.image.load('../media/left_arrow.png'), (70, 70)), (60, 250))
 
         y = surface.get_rect().height - len(self.OptionItems) * 110
         self.font_text.draw(surface, self.OptionItems[0], 250, y)
