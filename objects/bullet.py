@@ -1,3 +1,4 @@
+# imports
 import pygame, os, sys
 from pygame.locals import *
 

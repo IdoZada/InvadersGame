@@ -1,5 +1,5 @@
 from states.Invaders_Game import *
-from utils.pygamefont import *
+from utils.font import *
 
 
 class OptionState(GameState):
@@ -52,7 +52,7 @@ class OptionState(GameState):
 
     def draw(self, surface):
 
-        self.font.centre(surface, "Options", 48)
+        self.font.center(surface, "Options", 48)
 
         count = 0
         y = surface.get_rect().height - len(self.OptionItems) * 110

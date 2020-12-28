@@ -1,11 +1,12 @@
+# imports
 from objects.bullet import *
-from utils.pygamefont import *
+from utils.font import *
 
 """
 ----------------------------------------------------------------------------------------------------
-PlayerModel
-
-The player model.
+    PlayerModel
+    
+    The player model.
 ----------------------------------------------------------------------------------------------------
 """
 
@@ -23,9 +24,9 @@ class PlayerModel:
 
 """
 ----------------------------------------------------------------------------------------------------
-Player
-							
-The tank at the bottom of the screen.
+    Player
+    
+    The tank at the bottom of the screen.
 ----------------------------------------------------------------------------------------------------
 """
 
@@ -71,9 +72,9 @@ class PlayerController:
 
 """
 ----------------------------------------------------------------------------------------------------
-PlayerView
-					
-Renders the player tank.
+    PlayerView
+    
+    Renders the player tank.
 ----------------------------------------------------------------------------------------------------
 """
 
@@ -90,9 +91,9 @@ class PlayerView:
 
 """
 ----------------------------------------------------------------------------------------------------
-PlayerLivesView
-				
-Renders the number of lives left for the player.
+    PlayerLivesView
+                    
+    Renders the number of lives left for the player.
 ----------------------------------------------------------------------------------------------------
 """
 
@@ -110,7 +111,7 @@ class PlayerLivesView:
             surface.blit(self.image, (x, 8, 32, 32))
             x += 40
 
-        self.font.centre(surface, 'Score:' + ' ' + str(self.player.model.score), 10)
+        self.font.center(surface, 'Score:' + ' ' + str(self.player.model.score), 10)
         self.font.draw(surface, 'Level:' + ' ' + str(self.player.model.level), 700, 10)
 
 

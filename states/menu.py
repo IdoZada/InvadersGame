@@ -1,5 +1,5 @@
 from states.Invaders_Game import *
-from utils.pygamefont import *
+from utils.font import *
 
 
 class MainMenuState(GameState):
@@ -40,15 +40,14 @@ class MainMenuState(GameState):
 			
 		if keys[K_RETURN]:
 			if self.index == 2:
-				self.game.changeState(None) # exit the game
+				self.game.changeState(None)	 # Exit the game
 			elif self.index == 1:
 				self.game.changeState(self.optionGameState)
 			elif self.index == 0:
-				# print (self.playGameState)
 				self.game.changeState(self.playGameState)
 				
 	def draw(self, surface):
-		self.fontTitle.centre(surface, "Welcome To Invaders!", 100)
+		self.fontTitle.center(surface, "Welcome To Invaders!", 100)
 		count = 0
 		y = surface.get_rect().height - len(self.menuItems)*110
 		for item in self.menuItems:

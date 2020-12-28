@@ -1,11 +1,20 @@
 from states.Invaders_Game import *
-from utils.pygamefont import *
+from utils.font import *
+
+
+"""
+----------------------------------------------------------------------------------------------------
+SpaceShip class which controls the ship that you want to choice in the game.
+----------------------------------------------------------------------------------------------------
+"""
 
 
 class SpaceShipState(GameState):
 
     def __init__(self, game):
         super(SpaceShipState, self).__init__(game)
+        SCREEN_W = 800
+        SCREEN_H = 600
         self.mainMenuState = None
         self.optionState = None
         self.font = FontType("Ariel", 50, (255, 255, 255))
@@ -16,8 +25,6 @@ class SpaceShipState(GameState):
         self.spaceships = ['../media/ship1.png', '../media/ship2.png', '../media/ship3.png', '../media/ship4.png',
                            '../media/ship5.png', '../media/ship6.png']
         self.mySpaceships = self.loadSpaceships(self.spaceships)
-        SCREEN_W = 800
-        SCREEN_H = 600
         self.surface = pygame.display.set_mode((SCREEN_W, SCREEN_H))
 
     def setMainMenuState(self, state):
@@ -57,11 +64,10 @@ class SpaceShipState(GameState):
 
         if keys[K_RETURN]:
             self.game.changeState(self.optionState)  # go to option state
-            # print(self.spaceships[self.index])
             self.game.spaceship = self.spaceships[self.index]
 
     def draw(self, surface):
-        self.font.centre(surface, "Spaceship", 48)
+        self.font.center(surface, "Spaceship", 48)
         surface.blit(self.mySpaceships[self.index], (350, 250))
         surface.blit(pygame.transform.scale(pygame.image.load('../media/right_arrow.png'), (70, 70)), (680, 250))
         surface.blit(pygame.transform.scale(pygame.image.load('../media/left_arrow.png'), (70, 70)), (60, 250))

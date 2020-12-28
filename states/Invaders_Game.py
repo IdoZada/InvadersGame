@@ -5,7 +5,7 @@ from pygame.locals import *
 ----------------------------------------------------------------------------------------------------
 	GameState
 
-	The game state class defines an interface that is used by the RaspberryPiGame class. Each state
+	The game state class defines an interface that is used by the InvadersGame class. Each state
 	manages a particular function of the game. For example; main menu, the actual game play, and
 	interstitial screens.
 ----------------------------------------------------------------------------------------------------
@@ -49,9 +49,9 @@ class GameState(object):
 		
 """
 ----------------------------------------------------------------------------------------------------
-Raspberry Pi Game
+Invaders Game
 									
-Basic game object-oriented framework for the Raspberry Pi. Users create 'states' that alter what is
+Basic game object-oriented framework for the Invaders. Users create 'states' that alter what is
 being displayed on-screen / updated at any particular time.
 ----------------------------------------------------------------------------------------------------
 """
@@ -60,17 +60,18 @@ being displayed on-screen / updated at any particular time.
 class InvadersGame(object):
 			
 	"""
-	Initialise the Raspberry Pi Game class.
+	Initialise the Invaders Game class.
 	"""
 	def __init__(self, gameName, width, height):
 		
 		pygame.init()
 		pygame.display.set_caption(gameName)
+		icon_game = pygame.image.load('../media/ship2.png')
+		pygame.display.set_icon(icon_game)
 		self.gameSound = pygame.mixer.Sound('../media/background_music.wav')
 		self.gameSound.play(20)
 		self.fpsClock = pygame.time.Clock()
-		self.mainwindow = pygame.display.set_mode((width, height))
-		# self.background = pygame.Color(0, 0, 0)
+		self.main_window = pygame.display.set_mode((width, height))
 		self.background = pygame.transform.scale(pygame.image.load("../media/background-black.png"), (width, height))
 		self.currentState = None
 		self.spaceship = '../media/ship1.png'
@@ -109,9 +110,9 @@ class InvadersGame(object):
 			if self.currentState is not None:
 				self.currentState.update(gameTime)
 				
-			self.mainwindow.blit(self.background, (0, 0))
+			self.main_window.blit(self.background, (0, 0))
 			if self.currentState is not None:
-				self.currentState.draw(self.mainwindow)
+				self.currentState.draw(self.main_window)
 
 			pygame.display.update()
 			self.fpsClock.tick(60)

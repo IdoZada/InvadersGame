@@ -1,6 +1,6 @@
-# Our imports
+# imports
 
-from states.PlayGame import *
+from states.play_game import *
 from states.interstitial import *
 
 

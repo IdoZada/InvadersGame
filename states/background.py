@@ -1,5 +1,5 @@
 from states.Invaders_Game import *
-from utils.pygamefont import *
+from utils.font import *
 
 """
 ----------------------------------------------------------------------------------------------------
@@ -20,7 +20,7 @@ class BackgroundState(GameState):
         self.inputTick = 0
         self.OptionItems = ['Press Enter to select your background']
         self.backgrounds = ['../media/background_space.jpg', '../media/background_space_blue.png', '../media/background_space_purple.jpg', '../media/background-black.png']
-        self.myBackgrounds = self.loadBackgrounds(self, self.backgrounds)
+        self.myBackgrounds = self.loadBackgrounds(self.backgrounds)
         SCREEN_W = 800
         SCREEN_H = 600
         self.surface = pygame.display.set_mode((SCREEN_W, SCREEN_H))
@@ -32,7 +32,7 @@ class BackgroundState(GameState):
         self.optionState = state
 
     @staticmethod
-    def loadBackgrounds(self, backgrounds):
+    def loadBackgrounds(backgrounds):
         resized_backgrounds = []
         for background in backgrounds:
             pic = pygame.image.load(background)
@@ -61,11 +61,11 @@ class BackgroundState(GameState):
             self.inputTick = 0
 
         if keys[K_RETURN]:
-            self.game.changeState(self.optionState)  # exit the game
+            self.game.changeState(self.optionState)  # Exit the game
             self.game.background = pygame.transform.scale(pygame.image.load(self.backgrounds[self.index]), (800, 600))
 
     def draw(self, surface):
-        self.font.centre(surface, "Background", 48)
+        self.font.center(surface, "Background", 48)
         surface.blit(self.myBackgrounds[self.index], (200, 150))
         surface.blit(pygame.transform.scale(pygame.image.load('../media/right_arrow.png'), (70, 70)), (680, 250))
         surface.blit(pygame.transform.scale(pygame.image.load('../media/left_arrow.png'), (70, 70)), (60, 250))

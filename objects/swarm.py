@@ -1,3 +1,4 @@
+# imports
 from objects.bullet import *
 
 """
@@ -50,17 +51,15 @@ class SwarmController:
         self.shootTimer = self.bulletDropTime  # each bullet is fired in this ms interval
         self.currentShooter = 0  # current shooting alien
         self.collision = False
-
-        # Position the aliens
-        for y in range(7):
-            for x in range(10):
-                invader = InvaderModel(160 + (x * 48) + 8, (y * 32) + offsety, y % 2)
-                self.invaders.append(invader)
+        self.positionInvaders(offsety) # Position the invaders in the swarm
 
     def reset(self, offsety, ticks):
         self.currentframecount = ticks
         self.framecount = ticks
 
+        self.positionInvaders(offsety)
+
+    def positionInvaders(self, offsety):
         for y in range(7):
             for x in range(10):
                 invader = InvaderModel(160 + (x * 48) + 8, (y * 32) + offsety, y % 2)
@@ -141,9 +140,9 @@ class SwarmController:
 
 """
 ----------------------------------------------------------------------------------------------------
-	InvaderView
-	
-	Draws each invader in their position on the playing field with the correct frame.
+    InvaderView
+    
+    Draws each invader in their position on the playing field with the correct frame.
 ----------------------------------------------------------------------------------------------------
 """
 
