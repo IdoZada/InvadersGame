@@ -12,7 +12,6 @@ class BackgroundState(GameState):
 
     def __init__(self, game):
         super(BackgroundState, self).__init__(game)
-        self.mainMenuState = None
         self.optionState = None
         self.font = FontType("Ariel", 50, (255, 255, 255))
         self.font_text = FontType("Ariel", 25, (255, 255, 255))
@@ -25,12 +24,15 @@ class BackgroundState(GameState):
         SCREEN_H = 600
         self.surface = pygame.display.set_mode((SCREEN_W, SCREEN_H))
 
-    def setMainMenuState(self, state):
-        self.mainMenuState = state
-
+    """
+    Initialize the instance of state to move.
+    """
     def setOptionState(self, state):
         self.optionState = state
 
+    """
+    Load array of background and resized them for the game.
+    """
     @staticmethod
     def loadBackgrounds(backgrounds):
         resized_backgrounds = []

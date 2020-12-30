@@ -13,40 +13,41 @@ from pygame.locals import *
 
 
 class GameState(object):
-	
+
 	"""
 	Initialise the Game state class. Each sub-type must call this method. Takes one parameter, which
 	is the game instance.
 	"""
 	def __init__(self, game):
 		self.game = game
-		
+
 	"""
 	Called by the game when entering the state for the first time.
 	"""
 	def onEnter(self, previousState):
 		pass
-	
+
 	"""
 	Called by the game when leaving the state.
 	"""
 	def onExit(self):
 		pass
-		
+
 	"""
 	Called by the game allowing the state to update itself. The game time (in milliseconds) since
 	the last call is passed.
 	"""
 	def update(self, gameTime):
 		pass
-		
+
 	"""
 	Called by the game allowing the state to draw itself. The surface that is passed is the
 	current drawing surface.
 	"""
 	def draw(self, surface):
 		pass
-		
+
+
 """
 ----------------------------------------------------------------------------------------------------
 Invaders Game
@@ -58,12 +59,12 @@ being displayed on-screen / updated at any particular time.
 
 
 class InvadersGame(object):
-			
+
 	"""
 	Initialise the Invaders Game class.
 	"""
 	def __init__(self, gameName, width, height):
-		
+
 		pygame.init()
 		pygame.display.set_caption(gameName)
 		icon_game = pygame.image.load('../media/ship2.png')
@@ -75,14 +76,14 @@ class InvadersGame(object):
 		self.background = pygame.transform.scale(pygame.image.load("../media/background-black.png"), (width, height))
 		self.currentState = None
 		self.spaceship = '../media/ship1.png'
-		
+
 	"""
 	Change the current state. If the newState is 'None' then the game will terminate.
 	"""
 	def changeState(self, newState):
 		if self.currentState is not None:
 			self.currentState.onExit()
-			
+
 		if newState is None:
 			pygame.quit()
 			sys.exit()
@@ -95,21 +96,21 @@ class InvadersGame(object):
 	Run the game. Initial state must be supplied.
 	"""
 	def run(self, initialState):
-		
+
 		self.changeState(initialState)
-		
+
 		while True:
-			
+
 			for event in pygame.event.get():
 				if event.type == QUIT:
 					pygame.quit()
-					sys.exit()	
+					sys.exit()
 
 			gameTime = self.fpsClock.get_time()
-			
+
 			if self.currentState is not None:
 				self.currentState.update(gameTime)
-				
+
 			self.main_window.blit(self.background, (0, 0))
 			if self.currentState is not None:
 				self.currentState.draw(self.main_window)

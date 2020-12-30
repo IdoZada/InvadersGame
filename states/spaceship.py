@@ -15,7 +15,6 @@ class SpaceShipState(GameState):
         super(SpaceShipState, self).__init__(game)
         SCREEN_W = 800
         SCREEN_H = 600
-        self.mainMenuState = None
         self.optionState = None
         self.font = FontType("Ariel", 50, (255, 255, 255))
         self.font_text = FontType("Ariel", 25, (255, 255, 255))
@@ -27,12 +26,15 @@ class SpaceShipState(GameState):
         self.mySpaceships = self.loadSpaceships(self.spaceships)
         self.surface = pygame.display.set_mode((SCREEN_W, SCREEN_H))
 
-    def setMainMenuState(self, state):
-        self.mainMenuState = state
-
+    """
+        Initialize the instance of state to move.
+    """
     def setOptionState(self, state):
         self.optionState = state
 
+    """
+    Load array of ships and resized them for the game.
+    """
     @staticmethod
     def loadSpaceships(spaceships):
         resized_backgrounds = []

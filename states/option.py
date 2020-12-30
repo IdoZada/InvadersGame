@@ -7,19 +7,28 @@ class OptionState(GameState):
     def __init__(self, game):
         super(OptionState, self).__init__(game)
         self.mainMenuState = None
+        self.backgroundState = None
+        self.spaceShipState = None
+        self.OptionItems = ['Background', 'Spaceship', 'Back']
         self.font = FontType("Ariel", 50, (255, 255, 255))
         self.index = 0
         self.inputTick = 0
-        self.OptionItems = ['Background', 'Spaceship', 'Back']
-        self.backgroundState = None
-        self.spaceShipState = None
 
+    """
+       Initialize the instance of state to move.
+    """
     def setMainMenuState(self, state):
         self.mainMenuState = state
 
+    """
+        Initialize the instance of state to move.
+    """
     def setBackgroundState(self, state):
         self.backgroundState = state
 
+    """
+        Initialize the instance of state to move.
+    """
     def setSpaceShipState(self, state):
         self.spaceShipState = state
 
