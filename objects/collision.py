@@ -90,10 +90,6 @@ class CollisionController:
         self.alienDeadSound = pygame.mixer.Sound('../media/aliendie.wav')
         self.playerDie = pygame.mixer.Sound('../media/playerdie.wav')
 
-    # def render(self, surface):
-    # 	for b in self.BulletController.bullets:
-    # 		pygame.draw.rect(surface, (255, 0, 0), (b.x+3, b.y+3, 8, 12), 1)
-
     def update(self, gameTime):
 
         aliens = []
