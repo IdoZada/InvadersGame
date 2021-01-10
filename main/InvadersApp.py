@@ -1,5 +1,6 @@
 # imports
 from states.background import BackgroundState
+from states.exit import ExitState
 from states.interstitial import *
 from states.menu import MainMenuState
 from states.play_game import PlayGameState
@@ -18,7 +19,9 @@ SCREEN_H = 600
 invadersGame = InvadersGame("Invaders", SCREEN_W, SCREEN_H)
 mainMenuState = MainMenuState(invadersGame)
 gameOverState = InterstitialState(invadersGame, 'G A M E  O V E R !', 3000, mainMenuState)
-playGameState = PlayGameState(invadersGame, gameOverState)
+exitState = ExitState(invadersGame,mainMenuState)
+playGameState = PlayGameState(invadersGame, gameOverState , mainMenuState,exitState)
+exitState.setGameState(playGameState)
 getReadyState = InterstitialState(invadersGame, 'Get Ready!', 2000, playGameState)
 mainMenuState.setPlayState(getReadyState)
 optionState = OptionState(invadersGame)

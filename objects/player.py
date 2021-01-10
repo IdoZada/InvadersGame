@@ -34,12 +34,7 @@ class PlayerModel:
 class PlayerController:
     def __init__(self, x, y):
         self.model = PlayerModel(x, y)
-        # self.x = x
-        # self.y = y
         self.isPaused = False
-        # self.lives = 3
-        # self.score = 0
-        # self.speed = 100 # pixels per sec
         self.bullets = BulletController(-200)  # pixels per sec
         self.shootSound = pygame.mixer.Sound('../media/playershoot.wav')
 

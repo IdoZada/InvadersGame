@@ -2,11 +2,12 @@ from objects.collision import *
 
 from objects.player import *
 from objects.swarm import *
+from states.interstitial import InterstitialState
 
 
 class PlayGameState(GameState):
 
-    def __init__(self, game, gameOverState):
+    def __init__(self, game, gameOverState  ,  mainMenuState ,exitGameState):
         super(PlayGameState, self).__init__(game)
         self.controllers = None
         self.renderers = None
@@ -14,6 +15,9 @@ class PlayGameState(GameState):
         self.swarm_controller = None
         self.swarmSpeed = 500
         self.gameOverState = gameOverState
+        self.mainMenuState = mainMenuState
+        self.exitGameState = exitGameState
+        self.exitMessage = FontType("Ariel", 50, (255, 255, 255))
         self.initialise()
 
     def onEnter(self, previousState):
@@ -42,6 +46,12 @@ class PlayGameState(GameState):
     def update(self, gameTime):
         self.renderers[3] = PlayerView(self.player_controller, self.game.spaceship)
         self.renderers[4] = PlayerLivesView(self.player_controller, self.game.spaceship)
+
+        keys = pygame.key.get_pressed()
+        if keys[K_ESCAPE]:
+            self.game.changeState(self.exitGameState)
+            # exitFromGame = InterstitialState(self.game, 'Exit From GAME', 2000, self.mainMenuState)
+            # self.game.changeState(exitFromGame)
 
         for ctrl in self.controllers:
             ctrl.update(gameTime)

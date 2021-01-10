@@ -64,7 +64,6 @@ class InvadersGame(object):
 	Initialise the Invaders Game class.
 	"""
 	def __init__(self, gameName, width, height):
-
 		pygame.init()
 		pygame.display.set_caption(gameName)
 		icon_game = pygame.image.load('../media/ship2.png')
