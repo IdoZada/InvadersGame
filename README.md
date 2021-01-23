@@ -10,3 +10,10 @@ The aliens try to destroy the players' spaceship by firing bullets as they appro
 The game continues until all the aliens are defeated or if the alien reaches the bottom of the screen, then the game is over.
 
 The player can be disqualified up to 3 times and then there is an announcement of the end of the game.
+
+
+
+
+## Background selection
+
+![select_background](https://user-images.githubusercontent.com/48810056/105577941-64511100-5d85-11eb-864d-95487bb2bc4f.JPG)
