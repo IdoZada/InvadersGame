@@ -12,8 +12,20 @@ The game continues until all the aliens are defeated or if the alien reaches the
 The player can be disqualified up to 3 times and then there is an announcement of the end of the game.
 
 
+## Main Menu
+
+![menu_window](https://user-images.githubusercontent.com/48810056/105577978-aa0dd980-5d85-11eb-9786-c314b83c8df3.JPG)
+
+
+
 
 
 ## Background selection
 
 ![select_background](https://user-images.githubusercontent.com/48810056/105577941-64511100-5d85-11eb-864d-95487bb2bc4f.JPG)
+
+
+
+
+## Spaceship selection
+
