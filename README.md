@@ -11,10 +11,22 @@ The game continues until all the aliens are defeated or if the alien reaches the
 
 The player can be disqualified up to 3 times and then there is an announcement of the end of the game.
 
-## Architecture
+
+### MVC Design Pattern
 The game incorporates a MVC design pattern for each object in the app.
 
+#### PlayerModel
+Includes attributes like coordinates ,lives, score, speed, and level.
 
+#### PlayerController 
+* Have an instance of PlayerModel in order to update and change  the model attributes. 
+* Have an instance of Bullet Controller to update list of bullet model.
+
+#### PlayerView
+Have an instance of PlayerController to have an access to PlayerModel.
+
+
+![image](https://user-images.githubusercontent.com/48810056/105578285-ada26000-5d87-11eb-95ce-97b07f372604.png)
 
 
 
