@@ -27,19 +27,23 @@ The player can be disqualified up to 3 times and then there is an announcement o
 
 
 
+
 ## Spaceship selection
 
 ![select_spaceship](https://user-images.githubusercontent.com/48810056/105578007-e3dee000-5d85-11eb-9ceb-f1a5cad8abd4.JPG)
 
 
 
+
+
 ## Game Window
 
-![game2](https://user-images.githubusercontent.com/48810056/105578014-f1946580-5d85-11eb-97b3-20cb6935095e.JPG)
+![game](https://user-images.githubusercontent.com/48810056/105578016-f22cfc00-5d85-11eb-9bcb-100840cdf981.JPG)
+
+
 
 
 
 ## Game window after selecting background and spaceship
 
-
-![game](https://user-images.githubusercontent.com/48810056/105578016-f22cfc00-5d85-11eb-9bcb-100840cdf981.JPG)
+![game2](https://user-images.githubusercontent.com/48810056/105578014-f1946580-5d85-11eb-97b3-20cb6935095e.JPG)
