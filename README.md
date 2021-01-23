@@ -11,6 +11,14 @@ The game continues until all the aliens are defeated or if the alien reaches the
 
 The player can be disqualified up to 3 times and then there is an announcement of the end of the game.
 
+## Architecture
+The game incorporates a MVC design pattern for each object in the app.
+
+
+
+
+
+
 
 ## Main Menu
 
