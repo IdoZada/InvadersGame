@@ -1,13 +1,28 @@
-from objects.collision import *
+import constants.const as const
 
+# controllers
+from controllers.CollisionController import CollisionController
+from controllers.ExplosionController import ExplosionController
+from controllers.SwarmController import SwarmController
+
+# objects
+from objects.collision import *
 from objects.player import *
 from objects.swarm import *
+
+# views
+from views.BulletView import BulletView
+from views.ExplosionView import ExplosionView
+from views.InvaderView import InvaderView
+
+# states
+from states.Invaders_Game import GameState
 from states.interstitial import InterstitialState
 
 
 class PlayGameState(GameState):
 
-    def __init__(self, game, gameOverState  ,  mainMenuState ,exitGameState):
+    def __init__(self, game, gameOverState,  mainMenuState, exitGameState):
         super(PlayGameState, self).__init__(game)
         self.controllers = None
         self.renderers = None
@@ -50,8 +65,6 @@ class PlayGameState(GameState):
         keys = pygame.key.get_pressed()
         if keys[K_ESCAPE]:
             self.game.changeState(self.exitGameState)
-            # exitFromGame = InterstitialState(self.game, 'Exit From GAME', 2000, self.mainMenuState)
-            # self.game.changeState(exitFromGame)
 
         for ctrl in self.controllers:
             ctrl.update(gameTime)
@@ -66,7 +79,7 @@ class PlayGameState(GameState):
                 self.swarmSpeed = 100
 
             self.swarm_controller.reset(48, self.swarmSpeed)
-            levelUpMessage = InterstitialState(self.game, 'Congratulations Level Up!', 2000, self)
+            levelUpMessage = InterstitialState(self.game, const.CONGRATULATIONS_LEVEL_UP, 2000, self)
             self.game.changeState(levelUpMessage)
             self.player_controller.model.level += 1
 

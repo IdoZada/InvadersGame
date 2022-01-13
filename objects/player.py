@@ -1,6 +1,9 @@
 # imports
+from controllers.BulletController import BulletController
 from objects.bullet import *
 from utils.font import *
+import pygame
+from pygame.locals import *
 
 """
 ----------------------------------------------------------------------------------------------------

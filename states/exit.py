@@ -7,7 +7,7 @@ from utils.font import FontType
 
 class ExitState(GameState):
 
-    def __init__(self, game , mainMenuState):
+    def __init__(self, game, mainMenuState):
         super(ExitState, self).__init__(game)
         self.mainMenuState = mainMenuState
         self.gameState = None
