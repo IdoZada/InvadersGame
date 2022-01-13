@@ -1,4 +1,6 @@
 from states.play_game import *
+import pygame
+from pygame.locals import *
 
 
 class ExplosionView:

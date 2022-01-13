@@ -3,11 +3,11 @@ import constants.const as const
 # controllers
 from controllers.CollisionController import CollisionController
 from controllers.ExplosionController import ExplosionController
+from controllers.PlayerController import PlayerController
 from controllers.SwarmController import SwarmController
 
 # objects
 from objects.collision import *
-from objects.player import *
 from objects.swarm import *
 
 # views
@@ -18,6 +18,12 @@ from views.InvaderView import InvaderView
 # states
 from states.Invaders_Game import GameState
 from states.interstitial import InterstitialState
+from views.PlayerLivesView import PlayerLivesView
+from views.PlayerView import PlayerView
+
+from utils.font import *
+import pygame
+from pygame.locals import *
 
 
 class PlayGameState(GameState):

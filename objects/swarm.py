@@ -25,9 +25,3 @@ class InvaderModel:
 
     def hit(self, x, y, width, height):
         return x >= self.x and y >= self.y and x + width <= self.x + 32 and y + height <= self.y + 32
-
-
-
-
-
-
