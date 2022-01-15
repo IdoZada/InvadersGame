@@ -43,8 +43,3 @@ class ExplosionModelList:
 
         if nextState is not None:
             self.game.changeState(nextState)
-
-
-
-
-

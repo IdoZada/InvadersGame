@@ -45,4 +45,6 @@ class PlayerController:
             self.shootSound.play()
 
     def hit(self, x, y, width, height):
-        return x >= self.model.x and y >= self.model.y and x + width <= self.model.x + 32 and y + height <= self.model.y + 32
+        return x >= self.model.x and y >= self.model.y \
+               and x + width <= self.model.x + 32 \
+               and y + height <= self.model.y + 32

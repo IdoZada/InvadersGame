@@ -1,6 +1,7 @@
 
 # imports
 from states.interstitial import *
+import constants.const as const
 
 
 class CollisionController:
@@ -52,7 +53,7 @@ class CollisionController:
         if self.swarm.collision:
             self.playerDie.play()
             self.playGameState.initialise()
-            tryAgainMessage = InterstitialState(self.game, 'Try Again!', 2000, self.playGameState)
+            tryAgainMessage = InterstitialState(self.game, const.TRY_AGAIN, 2000, self.playGameState)
             self.game.changeState(tryAgainMessage)
 
         if playerHit:
@@ -61,7 +62,7 @@ class CollisionController:
 
             if self.player.model.lives > 0:
                 self.player.pause(True)
-                getReadyState = InterstitialState(self.game, 'Get Ready!', 2000, self.playGameState)
+                getReadyState = InterstitialState(self.game, const.GET_READY, 2000, self.playGameState)
                 self.expCtrl.list.add((self.player.model.x, self.player.model.y, 6, 50), getReadyState)
 
             self.playerDie.play()

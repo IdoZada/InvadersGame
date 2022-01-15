@@ -26,4 +26,3 @@ class PlayerLivesView:
 
         self.font.center(surface, 'Score:' + ' ' + str(self.player.model.score), 10)
         self.font.draw(surface, 'Level:' + ' ' + str(self.player.model.level), 700, 10)
-

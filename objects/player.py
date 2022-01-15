@@ -17,7 +17,3 @@ class PlayerModel:
         self.score = 0
         self.level = 1
         self.speed = 100  # pixels per second
-
-
-
-

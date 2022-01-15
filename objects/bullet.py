@@ -15,7 +15,3 @@ class BulletModel:
 		
 	def update(self, delta):
 		self.y = self.y + delta
-
-
-
-

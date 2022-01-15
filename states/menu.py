@@ -17,7 +17,7 @@ class MainMenuState(GameState):
 	def setPlayState(self, state):
 		self.playGameState = state
 
-	def setOptionState(self,state):
+	def setOptionState(self, state):
 		self.optionGameState = state
 
 	def update(self, gameTime):
